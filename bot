@@ -99,22 +99,7 @@ fun_ajuda() {
         env_msg+="⚠️ <i>Available Options</i>\n\n"
         env_msg+="• <u>CREATE USER</u> = Create ssh user\n\n"
         env_msg+="• <u>CREATE TEST</u> = Create ssh test\n\n"
-        env_msg+="• <u>TO REMOVE</u> = Remove ssh user\n\n"
-        env_msg+="• <u>USER INFO</u> = User information\n\n"
-        env_msg+="• <u>ONLINE USERS</u> = Displays online users\n\n"
-        env_msg+="• <u>INFO VPS</u> = Server information\n\n"
-        env_msg+="• <u>CHANGE PASSWORD</u> =Change ssh password\n\n"
-        env_msg+="• <u>CHANGE LIMIT</u> = Change ssh limit\n\n"
-        env_msg+="• <u>CHANGE DATE</u> = Change ssh data\n\n"
-        env_msg+="• <u>EXPIRED</u> = Remove expired ssh\n\n"
-        env_msg+="• <u>BACKUP</u> = Creates ssh backup and resellers\n\n"
-        env_msg+="• <u>OTIMIZAR</u> = Clear the cache - ram\n\n"
-        env_msg+="• <u>SPEEDTESTE</u> = connection test\n\n"
-        env_msg+="• <u>FILES</u> = Hosts Files\n\n"
-        env_msg+="• <u>RESELLERS</u> = Manage Resellers\n\n"
-        env_msg+="• <u>AUTOBACKUP</u> = on / off automatic backup\n\n"
-        env_msg+="• <u>REPORT</u> = Reseller Information\n\n"
-        env_msg+="• <u>HELP</u> = Option information\n\n"
+       
         ShellBot.sendMessage --chat_id $id_chatuser \
             --text "$(echo -e $env_msg)" \
             --parse_mode html
@@ -133,21 +118,13 @@ fun_ajuda() {
         env_msg+="<b>/Telegram-Whatsapp- +94768100942 </b>\n"
 	env_msg+="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
         env_msg+="⚠️ <i>Available Commands</i>\n\n"
-        env_msg+="[<b>01</b>] /menu = Displays menu\n"
+        env_msg+="[<b>01</b>] /ssh = Displays menu\n"
         env_msg+="[<b>02</b>] /info = Displays information\n"
-        env_msg+="[<b>03</b>] /ajuda = Option information\n\n"
+        env_msg+="[<b>03</b>] /help = Option information\n\n"
         env_msg+="⚠️ <i>Available Options</i>\n\n"
         env_msg+="• <u>CREATE USER</u> = Create ssh user\n\n"
         env_msg+="• <u>CREATE TEST</u> = Create ssh test\n\n"
-        env_msg+="• <u>TO REMOVE</u> = Remove ssh user\n\n"
-        env_msg+="• <u>USER INFO</u> = User information\n\n"
-        env_msg+="• <u>ONLINE USERS</u> = Displays online users\n\n"
-        env_msg+="• <u>CHANGE PASSWORD</u> =Change ssh password\n\n"
-        env_msg+="• <u>CHANGE LIMIT</u> = Change ssh limit\n\n"
-        env_msg+="• <u>CHANGE DATE</u> = Change ssh data\n\n"
-        env_msg+="• <u>EXPIRED</u> = Remove expired ssh\n\n"
-        env_msg+="• <u>RESELLERS</u> = Manage Resellers\n\n"
-        env_msg+="• <u>REPORT</u> = Reseller Information\n\n"
+       
         env_msg+="• <u>HELP</u> = Option information\n\n"
         ShellBot.sendMessage --chat_id $id_chatuser \
             --text "$(echo -e $env_msg)" \
@@ -169,22 +146,12 @@ fun_ajuda() {
         env_msg+="⚠️ <i>Available Options</i>\n\n"
         env_msg+="• <u>CREATE USER</u> = Create ssh user\n\n"
         env_msg+="• <u>CREATE TEST</u> = Create ssh test\n\n"
-        env_msg+="• <u>TO REMOVE</u> = Remove ssh user\n\n"
-        env_msg+="• <u>USER INFO</u> = User information\n\n"
-        env_msg+="• <u>ONLINE USERS</u> = Displays online users\n\n"
-        env_msg+="• <u>CHANGE PASSWORD</u> =Change ssh password\n\n"
-        env_msg+="• <u>CHANGE LIMIT</u> = Change ssh limit\n\n"
-        env_msg+="• <u>CHANGE DATE</u> = Change ssh data\n\n"
-        env_msg+="• <u>EXPIRED</u> = Remove expired ssh\n\n"
-        env_msg+="• <u>HELP</u> = Option information\n\n"
+      env_msg+="• <u>HELP</u> = Option information\n\n"
         ShellBot.sendMessage --chat_id $id_chatuser \
             --text "$(echo -e $env_msg)" \
             --parse_mode html
         return 0
-    else
-        ShellBot.sendMessage --chat_id $id_chatuser \
-            --text "$(echo -e 🚫 ACCESS DENIED 🚫)"
-        return 0
+  
     fi
 }
 
@@ -196,22 +163,14 @@ verifica_acesso() {
         }
     }
 }
-
-fun_adduser() {
-    [[ "$(grep -wc ${callback_query_from_username} $suspensos)" != '0' ]] && {
-        ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
-            --text "⚠️ YOU ARE SUSPENDED! CONTACT THE ADMINISTRATOR"
-        return 0
+     return 0
     }
     [[ "${callback_query_from_id[$id]}" == "$id_admin" ]] || [[ "$(grep -wc ${callback_query_from_username} $ativos)" != '0' ]] && {
         ShellBot.sendMessage --chat_id ${callback_query_message_chat_id[$id]} \
             --text "👤 CREATE USER 👤\n\nUsername:" \
             --reply_markup "$(ShellBot.ForceReply)"
-    } || {
-        ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
-            --text "🚫 ACCESS DENIED 🚫"
+    } ||
         return 0
-    }
 }
 
 criar_user() {
